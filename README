@@ -1,0 +1,67 @@
+Marshmallow
+-----------
+
+A small campfire bot-builder made with node.js
+
+    var marshmallow = require("marshmallow").marshmallow;
+
+    var config = {
+      token:   process.env["CAMPFIRE_TOKEN"],
+      account: process.env["CAMPFIRE_ACCOUNT"],
+      ssl:     process.env["CAMPFIRE_SSL"] == "true",
+      room_id: process.env["CAMPFIRE_ROOM"]
+    };
+
+    var GitHub = "http://github.com/secret/awesomeness";
+
+    marshmallow(config, function(bot) {
+      bot.on("!review (\S+)", function(branch) {
+        this.speak([GitHub, "compare", branch].join("/"));
+      });
+    });
+
+This will listen to all messages on the specified campfire room, and whenever a
+message matches one of the defined regular expressions, the corresponding
+callback will be invoked, passing any captures from the regular expression as
+arguments.
+
+This is an example conversation from our campfire room:
+
+    Developer A: guys, when you have some time, please !review my_feature_branch
+    Mr Robot: http://github.com/secret/awesomeness/compare/my_feature_branch
+    Developer B: sweet, reading the diff
+
+This is useful for all sorts of small things, like "take a look at !ticket ##",
+or that sort of thing.
+
+Let me know if you're using it and what for! I'm glad to add examples to it :)
+
+Sidenote
+========
+
+This is my frist node.js project. Please do let me know if the code is awful and
+how it can be improved. My email is on my github profile :)
+
+License
+=======
+
+(The MIT License)
+
+Copyright (c) 2010 Nicolas Sanguinetti
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the 'Software'), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
