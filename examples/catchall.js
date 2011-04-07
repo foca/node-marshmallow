@@ -8,8 +8,8 @@ var config = {
 };
 
 marshmallow(config, function(bot) {
-  // Basic ping function
-  bot.on("^!ping", function(ping) {
-    this.speak("pong!");
+  // Reverse everything everyone says
+  bot.on('catchAll', function(rawMessage) {
+    this.speak(rawMessage.body.split(" ").reverse.join(" "));
   });
 });
